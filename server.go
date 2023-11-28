@@ -28,8 +28,6 @@ func main() {
 		port = defaultPort
 	}
 
-	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{}}))
-
 	r := chi.NewRouter()
 
 	f, err := repository.FirebaseApp(ctx)
@@ -49,6 +47,13 @@ func main() {
 	}
 
 	app := graph.NewApplication()
+
+	resolver := &graph.Resolver{
+		FirestoreClient: fc,
+		App:             app,
+	}
+
+	srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: resolver}))
 
 	r.Handle("/", playground.Handler("GraphQL Playground", "/query"))
 	r.Handle("/query", srv)
