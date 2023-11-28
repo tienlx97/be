@@ -6,31 +6,18 @@ package graph
 
 import (
 	"be/graph/model"
-	"be/repository"
 	"context"
-	"math/rand"
-	"strconv"
+	"fmt"
 )
 
-var videoRepo repository.VideoRepository = repository.New()
-
-// CreateVideo is the resolver for the createVideo field.
-func (r *mutationResolver) CreateVideo(ctx context.Context, input model.NewVideo) (*model.Video, error) {
-	video := &model.Video{
-		ID:     strconv.Itoa(rand.Int()),
-		Title:  input.Title,
-		URL:    input.URL,
-		Author: &model.User{ID: input.UserID, Name: "user" + input.UserID},
-	}
-
-	videoRepo.Save(video)
-
-	return video, nil
+// CreateTodo is the resolver for the createTodo field.
+func (r *mutationResolver) CreateTodo(ctx context.Context, input model.NewTodo) (*model.Todo, error) {
+	panic(fmt.Errorf("not implemented: CreateTodo - createTodo"))
 }
 
-// Videos is the resolver for the videos field.
-func (r *queryResolver) Videos(ctx context.Context) ([]*model.Video, error) {
-	return videoRepo.FindAll(), nil
+// Todos is the resolver for the todos field.
+func (r *queryResolver) Todos(ctx context.Context) ([]*model.Todo, error) {
+	panic(fmt.Errorf("not implemented: Todos - todos"))
 }
 
 // Mutation returns MutationResolver implementation.
