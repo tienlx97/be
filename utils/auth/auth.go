@@ -8,8 +8,8 @@ import (
 	firebase "firebase.google.com/go"
 	"go.uber.org/zap"
 
-	ce "be/custom_error"
-	"be/logger"
+	ce "be/utils/custom_error"
+	"be/utils/logger"
 )
 
 var UserCtxKey = &contextKey{"user"}

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"be/auth"
 	"be/graph"
-	"be/logger"
 	"be/repository"
+	"be/utils/auth"
+	"be/utils/logger"
 	"context"
 	"net/http"
 	"os"
